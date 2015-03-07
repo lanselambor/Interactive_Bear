@@ -12,7 +12,7 @@ grovepi.pinMode(speaker,"OUTPUT")
 time.sleep(1)
 i = 0
 
-address = ('192.168.0.181', 31500)
+address = ('192.168.21.205', 31500)
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM) # s = socket.socket()
 s.connet(address)
 

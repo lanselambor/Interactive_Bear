@@ -12,23 +12,21 @@ grovepi.pinMode(speaker,"OUTPUT")
 time.sleep(1)
 i = 0
 
-'''
-address = ('192.168.0.181', 31500)
+address = ('192.168.21.205', 31500)
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM) # s = socket.socket()
 s.bind(address)
 s.listen(5)
 
 ss, addr = s.accept()
 
-'''
 
 
 while True:
     try:
         #Socket recieve 
-#        ra = ss.recv(4)
-#        if ra == 'bear':
-#            grovepi.digitalWrite(speaker,1)
+        ra = ss.recv(4)
+        if ra == 'bear':
+            grovepi.digitalWrite(speaker,1)
        
         # Read resistance from Potentiometer
         i = grovepi.analogRead(input)
@@ -44,13 +42,13 @@ while True:
                 #speaker open
                 grovepi.digitalWrite(speaker,1)
                 #socket send
-#               ss.send('bear')
+               ss.send('bear')
         else:
             #speaker close
             grovepi.digitalWrite(speaker,0)
         time.sleep(0.01)
 
     except IOError:
-#        ss.close()
-#        s.close()
+        ss.close()
+        s.close()
         print "Error"
