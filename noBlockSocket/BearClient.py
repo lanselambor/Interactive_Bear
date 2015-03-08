@@ -37,7 +37,7 @@ while True:
         if i >= 1020:
             time.sleep(0.05)
 #        if grovepi.digitalRead(input) == 1: 
-            time.sleep(0.05)
+#            time.sleep(0.05)
             i = grovepi.analogRead(input)
             if i >= 1020:                    
 #            if grovepi.digitalRead(input) == 1:
@@ -50,7 +50,7 @@ while True:
                 grovepi.digitalWrite(speaker,1)
                 #socket send
                 s.send('bear')
-                time.sleep(3)
+                time.sleep(0.5)
         else:
             #speaker close
             grovepi.digitalWrite(speaker,0)

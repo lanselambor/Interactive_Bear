@@ -14,7 +14,7 @@ grovepi.pinMode(input,"INPUT")
 time.sleep(1)
 i = 0
 
-address = ('192.168.21.205', 31500)
+address = ('192.168.0.178', 31500)
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM) # s = socket.socket()
 s.bind(address)
 s.listen(5)
@@ -35,7 +35,7 @@ while True:
                     print buf
                     if buf == 'bear':
                         grovepi.digitalWrite(speaker,1)
-                        time.sleep(3)
+                        time.sleep(4)
                     ss.close()    
             print 'no data coming'    
 
@@ -56,7 +56,7 @@ while True:
                 grovepi.digitalWrite(speaker,1)
                 #socket send
                 ss.send('bear')
-                time.sleep(4)
+                time.sleep(0.5)
         else:
             #speaker close
             grovepi.digitalWrite(speaker,0)
