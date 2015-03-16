@@ -20,21 +20,23 @@ def broadcast(clients, data):
 	clients[i].sendall(data)
 
 def recvThread(conn):
-    data = conn.recv(1024).strip()
-    if data == '' or data == 'bye':
-        aliveFlag = False
-        conn.close()
-        for i in range(len(clients)):
-            if clients[i] == conn:
-                del clients[i]
-                return      
+    global clients
+#    data = conn.recv(1024).strip()
+#    if data == '' or data == 'bye':
+#        aliveFlag = False
+#        conn.close()
     while True:
 	msg = conn.recv(1024).rstrip()
-	if data == "" or data == "bye": 
+        print msg
+	if msg == "" or msg == "bye": 
 	    conn.close()
-	    return
+	    for i in range(len(clients)):
+		if clients[i] == conn:
+                    print conn, "offline"
+		    del clients[i]                    
+		    return      
         else:
-            broadcast(clients, data)
+            broadcast(clients, msg)
 
 # init socket
 address = ('localhost', 31500)

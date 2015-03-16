@@ -52,6 +52,8 @@ thread.start_new_thread(recvThread, (sock, ))
 #thread.start_new_thread(sendThread, (sock, ))
 
 # main thread
-while True:    
-    sock.send("1")
-    time.sleep(2)
+while True:   
+    cmd = raw_input("input: ") 
+    print ''
+    sock.send(cmd)
+    time.sleep(1)
