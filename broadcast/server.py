@@ -39,7 +39,7 @@ def recvThread(conn):
             broadcast(clients, msg)
 
 # init socket
-address = ('localhost', 31500)
+address = ('45.62.100.29', 31500)
 sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM) 
 print 'Socket created.'
 

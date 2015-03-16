@@ -42,7 +42,7 @@ def sendThread(sock):
 sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
 try:
-    sock.connect(('localhost', 31500))
+    sock.connect(('45.62.100.29', 31500))
 except socket.error, arg:
     (errno, err_msg) = arg
     print "Connect server failed: %s, errno=%d "%(err_msg, errno)
