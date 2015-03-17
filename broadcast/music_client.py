@@ -5,6 +5,7 @@ import thread
 import signal
 import sys
 import grovepi
+import subprocess, os
 
 server_addr = ("45.62.100.29", 31500)
 
@@ -41,7 +42,9 @@ def recvThread(sock):
 	    if cmd == "action":
 		print 'action'
                 grovepi.digitalWrite(speaker, 1)
+                subprocess.Popen("omxplayer /home/pi/Interactive_Bear/MP3/Immortals.mp3", shell=True)
                 time.sleep(4) 
+                subprocess.Popen("python ./script/killAudio.py", shell=True)
                 grovepi.digitalWrite(speaker, 0)
 	except:
 	    (ErrorType, ErrorValue, ErrorTB) = sys.exc_info()
