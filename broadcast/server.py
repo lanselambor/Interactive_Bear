@@ -10,8 +10,9 @@ import tempfile
 
 
 # sever
+local_addr = ("45.62.100.29", 31500)
 aliveFlag = True
-clients= []
+clients = []
 
 def broadcast(clients, data):
 #    while aliveFlag:    
@@ -39,7 +40,7 @@ def recvThread(conn):
             broadcast(clients, msg)
 
 # init socket
-address = ('45.62.100.29', 31500)
+address = (local_addr)
 sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM) 
 print 'Socket created.'
 
