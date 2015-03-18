@@ -66,7 +66,7 @@ def recvThread(sock):
                 grovepi.digitalWrite(speaker, 1)
                 subprocess.Popen("omxplayer /home/pi/Interactive_Bear/MP3/hello.mp3", shell=True)
                 time.sleep(4) 
-                subprocess.Popen("python ./script/killAudio.py", shell=True)
+                subprocess.Popen("python /home/pi/Interactive_Bear/broadcast/script/killAudio.py", shell=True)
                 grovepi.digitalWrite(speaker, 0)
 	except:
 	    (ErrorType, ErrorValue, ErrorTB) = sys.exc_info()
@@ -91,10 +91,11 @@ try:
     subprocess.Popen("omxplayer /home/pi/Interactive_Bear/MP3/coming.mp3", shell=True)
     grovepi.digitalWrite(speaker, 1)
     time.sleep(2)
+    subprocess.Popen("python /home/pi/Interactive_Bear/broadcast/script/killAudio.py", shell=True)
     grovepi.digitalWrite(speaker, 0)  
 except socket.error, arg:
     (errno, err_msg) = arg
-    print "Connect server failed: %s, errno=%d "%(err_msg, errno)
+    subprocess.Popen("python /home/pi/Interactive_Bear/broadcast/script/killAudio.py", shell=True)
     sock.close()
     sys.exit()
 
