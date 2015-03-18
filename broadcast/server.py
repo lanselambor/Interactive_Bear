@@ -10,15 +10,16 @@ import tempfile
 
 
 # sever
-local_addr = ("45.62.100.29", 31500)
+address = ('45.62.100.29', 31500)
 aliveFlag = True
-clients = []
+clients= []
+mutex = threading.Lock()
 
 def broadcast(clients, data):
 #    while aliveFlag:    
     print "This is sendThread"
     for i in range(len(clients)):
-	clients[i].sendall(data)
+        clients[i].sendall(data)
 
 def recvThread(conn):
     global clients
@@ -27,20 +28,27 @@ def recvThread(conn):
 #        aliveFlag = False
 #        conn.close()
     while True:
-	msg = conn.recv(1024).rstrip()
-        print msg
+        try:
+	    msg = conn.recv(1024).rstrip()
+        except socket.error, args:
+            conn.close()
+	    for i in range(len(clients)):
+		if clients[i] == conn:
+		    print conn, "offline"
+		    del clients[i]                    
+            return
+	print msg
 	if msg == "" or msg == "bye": 
 	    conn.close()
 	    for i in range(len(clients)):
 		if clients[i] == conn:
-                    print conn, "offline"
+		    print conn, "offline"
 		    del clients[i]                    
 		    return      
-        else:
-            broadcast(clients, msg)
+	else:
+	    broadcast(clients, msg)
 
 # init socket
-address = (local_addr)
 sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM) 
 print 'Socket created.'
 

@@ -66,6 +66,7 @@ sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
 try:
 #    sock.connect(('45.62.100.29', 31500))
     sock.connect(server_addr)
+    subprocess.Popen("omxplayer /home/pi/Interactive_Bear/MP3/startvoice.wav", shell=True)
     grovepi.digitalWrite(speaker, 1)
     time.sleep(2)
     grovepi.digitalWrite(speaker, 0)  
