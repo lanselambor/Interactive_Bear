@@ -67,6 +67,11 @@ def recvThread(sock):
                 grovepi.digitalWrite(speaker, 1)
                 time.sleep(3)
                 grovepi.digitalWrite(speaker, 0)
+	    if cmd == "shaking":
+		print 'shaking..'
+                grovepi.digitalWrite(speaker, 1)
+                time.sleep(3)
+                grovepi.digitalWrite(speaker, 0)
 	except:
 	    (ErrorType, ErrorValue, ErrorTB) = sys.exc_info()
 	    print 'recv error: ', ErrorValue
