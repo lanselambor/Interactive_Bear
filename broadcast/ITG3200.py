@@ -118,7 +118,7 @@ class ITG3200():
 if __name__=="__main__":
     gyro = ITG3200()
     gyro.init()
-    gyro.zeroCalibrate(20, 20)
+    gyro.zeroCalibrate(5, 5)
     print "offset: ", gyro.x_offset, gyro.y_offset, gyro.z_offset
     time.sleep(2)
     

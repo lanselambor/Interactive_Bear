@@ -47,9 +47,10 @@ def io_actions(sock):
             time.sleep(3)
             grovepi.digitalWrite(speaker, 0) 
     if True == getShakingState():       
-	print "Shaking.."     
 	sock.send("shaking")            
-        subprocess.Popen("mplayer /home/pi/Interactive_Bear/MP3/laugh.mp3", shell=True)
+	grovepi.digitalWrite(speaker, 1) 
+	time.sleep(3)
+	grovepi.digitalWrite(speaker, 0) 
         
 # Client
 
@@ -64,7 +65,7 @@ def recvThread(sock):
 	    if cmd == "action":
 		print 'action'
                 grovepi.digitalWrite(speaker, 1)
-                subprocess.Popen("mplayer /home/pi/Interactive_Bear/MP3/hello.mp3", shell=True)
+                time.sleep(3)
                 grovepi.digitalWrite(speaker, 0)
 	except:
 	    (ErrorType, ErrorValue, ErrorTB) = sys.exc_info()
@@ -86,8 +87,8 @@ sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
 try:
 #    sock.connect(('45.62.100.29', 31500))
     sock.connect(server_addr)
-    subprocess.Popen("mplayer /home/pi/Interactive_Bear/MP3/coming.mp3", shell=True)
     grovepi.digitalWrite(speaker, 1)
+    time.sleep(3)
     grovepi.digitalWrite(speaker, 0)  
 except socket.error, arg:
     (errno, err_msg) = arg
